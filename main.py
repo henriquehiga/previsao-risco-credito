@@ -13,3 +13,15 @@ colunas = [
 ]
 
 df_credito = pd.read_csv(url, sep=' ', header=None, names=colunas)
+
+# Pré-processamento para que o modelo compreenda categorias qualitativas utilizando Label Encoding;
+
+# Utilizei label encoding pois este campo possui informação ordinal. Considerando que 5 é bom e 1 é ruim, fiz o mapeamento abaixo:
+# para que a coluna historico_credito não seja inputada no modelo como sendo uma identificação externa, mas um valor lógico
+df_credito.loc[df_credito['historico_credito'] == 'A30', 'historico_credito'] = 5
+df_credito.loc[df_credito['historico_credito'] == 'A31', 'historico_credito'] = 4
+df_credito.loc[df_credito['historico_credito'] == 'A32', 'historico_credito'] = 3
+df_credito.loc[df_credito['historico_credito'] == 'A33', 'historico_credito'] = 2
+df_credito.loc[df_credito['historico_credito'] == 'A34', 'historico_credito'] = 1
+
+print(df_credito.tail(5))
